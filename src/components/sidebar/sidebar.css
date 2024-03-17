@@ -1,0 +1,151 @@
+/* sidebar */
+#sidebar {
+    grid-area: sidebar;
+    height: 100%;
+    background-color: white;
+    overflow-y: auto;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+}
+.avatar {
+    vertical-align: middle;
+    width: 40px;
+    height: 40px;
+    margin-top: 10px;
+    margin-left: 10px;
+    border-radius: 50%;
+}
+
+.sidebar-responsive {
+    /* display: inline !important; */
+    position: absolute;
+    /*
+      we want the z-index of the sidebar higher so that
+      the charts are not showing over the sidebar 
+      on small screens
+    */
+    z-index: 12 !important;
+  }
+
+/* dropdown css */
+
+
+.dropdown a {
+    text-decoration: none;
+}
+
+[data-toggle="dropdown"] {
+    position: relative;
+    display: block;
+    color: black;
+    background: $blue; /* Assuming $blue is defined elsewhere */
+    /* box-shadow: 0 1px 0 lighten($blue, 10%) inset, 0 -1px 0 darken($blue, 10%) inset; */
+    /* background and box-shadow mixins replaced with direct CSS properties */
+    text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.3);
+    padding: 5px;
+}
+
+.icon-arrow {
+    position: absolute;
+    display: block;
+    font-size: 0.4em;
+    color: #fff;
+    top: 14px;
+    right: 10px;
+}
+
+.icon-arrow.open {
+    transform: rotate(-180deg);
+    transition: transform .6s;
+}
+
+.icon-arrow.close {
+    transform: rotate(0deg);
+    transition: transform .6s;
+}
+
+.icon-arrow:before {
+    content: '\25BC';
+}
+
+.dropdown-menu {
+    max-height: 0;
+    overflow: hidden;
+}
+
+.dropdown-menu li {
+    padding: 0;
+    padding-left: 1em;
+    font-weight: 500;
+}
+
+.dropdown-menu li a {
+    display: block;
+    /* color: darken($gray, 50%);
+    background: $gray; */
+    /* box-shadow: 0 1px 0 lighten($gray, 10%) inset, 0 -1px 0 darken($gray, 10%) inset; */
+    /* background and box-shadow mixins replaced with direct CSS properties */
+    text-shadow: 0 -1px 0 rgba(255, 255, 255, 0.3);
+    padding: 0;
+}
+
+.show,
+.hide {
+    transform-origin: 50% 0%;
+}
+
+.show {
+    display: block;
+    max-height: 9999px;
+    transform: scaleY(1);
+    /* animation: showAnimation .5s ease-in-out; */
+    /* Keyframes animation replaced with direct CSS property */
+    transition: max-height 1s ease-in-out;
+}
+
+.hide {
+    max-height: 0;
+    transform: scaleY(0);
+    /* animation: hideAnimation .4s ease-out; */
+    /* Keyframes animation replaced with direct CSS property */
+    transition: max-height .6s ease-out;
+}
+
+@keyframes showAnimation {
+    0% {
+        transform: scaleY(0.1);
+    }
+    40% {
+        transform: scaleY(1.04);
+    }
+    60% {
+        transform: scaleY(0.98);
+    }
+    80% {
+        transform: scaleY(1.04);
+    }
+    100% {
+        transform: scaleY(0.98);
+    }               
+    80% {
+        transform: scaleY(1.02);
+    }
+    100% {
+        transform: scaleY(1);
+    }
+}
+
+@keyframes hideAnimation {
+    0% {
+        transform: scaleY(1);
+    }
+    60% {
+        transform: scaleY(0.98);
+    }
+    80% {
+        transform: scaleY(1.02);
+    }
+    100% {
+        transform: scaleY(0);
+    }
+}
