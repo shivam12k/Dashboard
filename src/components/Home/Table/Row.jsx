@@ -8,7 +8,6 @@ const getRandomColor = () => {
     "#1da1f2",
     "#f21d99",
     "#fb7185",
-    "brown",
     "#be123c",
     "#a855f7",
     "#6366f1",
@@ -20,18 +19,17 @@ const getRandomColor = () => {
 
 const Row = ({ row }) => {
   // Generate random colors for each avatar
-//   const color1 = "";
-//   const color2 = getRandomColor();
-//   const color3 = getRandomColor();
-  const [timeColor, setTImeColor] = useState("#1da1f2");
-  
+  //   const color1 = "";
+  //   const color2 = getRandomColor();
+  //   const color3 = getRandomColor();
+  const [timeColor, setTimeColor] = useState("#1da1f2");
+
   useEffect(() => {
-    setTImeColor(getRandomColor());
+    setTimeColor(getRandomColor());
   }, []); // Run once on component mount
 
   return (
     <tr className="h-10 hover:bg-slate-200">
-
       <td className="px-6 pt-2 whitespace-nowrap flex flex-row pb-1 items-center gap-1 overflow-x-scroll no-scrollbar">
         <input
           type="checkbox"
@@ -60,11 +58,13 @@ const Row = ({ row }) => {
       </td>
       {/* categories */}
       <td className="px-2 py-2 whitespace-nowrap flex flex-row max-w-[200px]  overflow-x-scroll no-scrollbar">
-        {row.categories.map((category, key)=>(
-             <Categories category={category} key={key} color={() => getRandomColor()} />
+        {row.categories.map((category, key) => (
+          <Categories
+            category={category}
+            key={key}
+            color={getRandomColor()} // Fixed prop name to 'color'
+          />
         ))}
-       
-        
       </td>
       {/* Tags */}
       <td className="px-6 py-2 whitespace-nowrap max-w-[200px]  overflow-x-scroll no-scrollbar">
@@ -83,11 +83,12 @@ const Row = ({ row }) => {
           </div>
         </div>
       </td>
-      {/* meeting timw */}
+      {/* meeting time */}
       <td className="px-6 py-2 whitespace-nowrap max-w-[200px]  overflow-x-scroll no-scrollbar">
         <button
           type="button"
-          className={`text-[${timeColor}] hover:text-white border border-[${timeColor}] hover:bg-[${timeColor}] hover:bg-opacity-50 focus:ring-4 focus:outline-none focus:ring-[${timeColor}] font-medium rounded-lg text-xs px-2 py-1 text-center me-1 mb-1`}
+          style={{ color: timeColor, borderColor: timeColor }}
+          className={`border bg-[#6366f1]/10 hover:bg-opacity-50 focus:ring-4 focus:outline-none focus:ring-${timeColor} font-medium rounded-lg text-xs px-2 py-1 text-center me-1 mb-1`}
         >
           {row.nextMeeting}
         </button>
